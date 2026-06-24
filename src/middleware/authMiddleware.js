@@ -48,3 +48,9 @@ exports.protect = async (req, res, next) => {
     });
   }
 };
+exports.noprotect = async (req, res, next) => {
+  
+    
+    next();
+  
+};

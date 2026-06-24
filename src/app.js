@@ -10,17 +10,26 @@ const movieRoutes = require("./routes/movieRoutes");
 
 const app = express();
 
+// Middleware
 app.use(
   cors({
-    origin: "http://localhast:5173",
+    origin: "http://localhost:5175", // Vite frontend URL
     credentials: true,
-  }),
+  })
 );
-app.use("/uploads", express.static("uploads"));
+
 app.use(express.json());
 app.use(cookieParser());
 
-// Use Routes
+// Test Route
+app.get("/", (req, res) => {
+  res.send("Server is running");
+});
+
+// Static Folder
+app.use("/uploads", express.static("uploads"));
+
+// API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/actors", actorRoutes);
 app.use("/api/producers", producerRoutes);
